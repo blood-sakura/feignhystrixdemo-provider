@@ -1,0 +1,8 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: ${artifactName}-config
+  namespace: default
+data:
+  ACTIVE_MVN_PROFILE: prd
+  ENVIRONMENT_NAME: Dev

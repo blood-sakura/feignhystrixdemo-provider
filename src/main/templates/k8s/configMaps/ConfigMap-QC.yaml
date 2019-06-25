@@ -1,0 +1,8 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: ${artifactName}-config
+  namespace: qc
+data:
+  ACTIVE_MVN_PROFILE: prd
+  ENVIRONMENT_NAME: QC

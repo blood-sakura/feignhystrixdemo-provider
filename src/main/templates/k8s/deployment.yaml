@@ -1,0 +1,42 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: ${artifactName}
+spec:
+  selector:
+    matchLabels:
+      run: ${artifactName}
+  replicas: 2
+  strategy:
+    rollingUpdate:
+      maxSurge: 1
+      maxUnavailable: 1
+  template:
+    metadata:
+      labels:
+        run: ${artifactName}
+    spec:
+      containers:
+      - name: ${artifactName}
+        image: apacpoc.azurecr.io/${artifactName}:${dockerImgVer}
+        imagePullPolicy: Always
+        command: [ "java" ]
+        args: ["-jar", "/app.jar", "-Dspring.profiles.active=$(ACTIVE_MVN_PROFILE_KEY)"]
+        ports:
+          - containerPort: 8080
+        env:
+          - name: ACTIVE_MVN_PROFILE_KEY
+            valueFrom:
+              configMapKeyRef:
+                name: ${artifactName}-config
+                key: ACTIVE_MVN_PROFILE
+          - name: ENVIRONMENT_NAME_KEY
+            valueFrom:
+              configMapKeyRef:
+                name: ${artifactName}-config
+                key: ENVIRONMENT_NAME
+          - name: MY_POD_IP
+            valueFrom:
+              fieldRef:
+                fieldPath: status.podIP
+       
