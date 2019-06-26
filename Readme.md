@@ -1,1 +1,1 @@
-Public release 1.2.0
+Hotfix 1.2.1
