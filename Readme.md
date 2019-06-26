@@ -1,1 +1,1 @@
-It's a readme file committed to release/1.0.0 branch
+It's a readme file committed to feature/1.2.0-TradeShow2019 branch, which is based on develop/1.2.0-SNAPSHOT
