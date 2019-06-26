@@ -1,1 +1,1 @@
-It's a readme file committed to release/1.0.0 branch
+Public release 1.2.0
